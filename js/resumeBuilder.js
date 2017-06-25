@@ -33,6 +33,11 @@ var bio = {
         $('#header').append(formattedWelcomeMessage);
         $('#header').append(HTMLskillsStart);
 
+        $('#footerContacts').append(fomattedMobile);
+        $('#footerContacts').append(fomattedEmail);
+        $('#footerContacts').append(fomattedGithub);
+        $('#footerContacts').append(fomattedLocation);
+
         for (var i = 0; i < bio.skills.length; i++) {
             $('#skills').append(HTMLskills.replace("%data%", bio.skills[i]));
         }
@@ -164,30 +169,10 @@ var education = {
         var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses.url);
         $('.education-entry:last').append(formattedOnlineURL);
 
-        /*
-         for(var j=0;j<education.onlineCourses.length;j++){
-         // $('#education').append(HTMLonlineClasses);
-         var formattedOnlineCoursesTitle=HTMLonlineTitle.replace("%data%",education.onlineCourses[j].title);
-         var formattedOnlineCoursesSchool=HTMLonlineSchool.replace("%data%",education.onlineCourses[j].school);
-         var formattedOnlineCoursesSchoolTitle=formattedOnlineCoursesTitle+formattedOnlineCoursesSchool;
-         $('.education-entry:last').append(formattedOnlineCoursesSchoolTitle);
-         var formattedOnlineDates=HTMLonlineDates.replace("%data%",education.onlineCourses[j].dates);
-         $('.education-entry:last').append(formattedOnlineDates);
-         var formattedOnlineURL=HTMLonlineURL.replace("%data%",education.onlineCourses[j].url);
-         $('.education-entry:last').append(formattedOnlineURL);
-
-         }
-         */
-
-        /*
-         for(var i=0;i<Object.getOwnPropertyNames(education).length;i++){
-
-         }
-         */
-
     }
 
 };
+
 $('#mapDiv').append(googleMap);
 
 
