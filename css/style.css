@@ -219,3 +219,11 @@ span {
     display: block;
   }
 }
+
+#education h3 {
+  padding-left: 0;
+}
+
+.project-entry img {
+  width: 40%;
+}
