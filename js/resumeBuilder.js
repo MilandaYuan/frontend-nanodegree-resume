@@ -25,18 +25,14 @@ var bio = {
 
         $('#header').prepend(formattedRole);
         $('#header').prepend(formattedName);
-        $('#topContacts').append(fomattedMobile);
-        $('#topContacts').append(fomattedEmail);
-        $('#topContacts').append(fomattedGithub);
-        $('#topContacts').append(fomattedLocation);
         $('#header').append(biopic);
         $('#header').append(formattedWelcomeMessage);
         $('#header').append(HTMLskillsStart);
 
-        $('#footerContacts').append(fomattedMobile);
-        $('#footerContacts').append(fomattedEmail);
-        $('#footerContacts').append(fomattedGithub);
-        $('#footerContacts').append(fomattedLocation);
+        $('#topContacts,#footerContacts').append(fomattedMobile);
+        $('#topContacts,#footerContacts').append(fomattedEmail);
+        $('#topContacts,#footerContacts').append(fomattedGithub);
+        $('#topContacts,#footerContacts').append(fomattedLocation);
 
         for (var i = 0; i < bio.skills.length; i++) {
             $('#skills').append(HTMLskills.replace("%data%", bio.skills[i]));
@@ -96,6 +92,7 @@ var projects = {
         }
     ],
     "display": function () {
+/*  for循环不易读
         for (var i = 0; i < projects.projects.length; i++) {
             $('#projects').append(HTMLprojectStart);
             var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
@@ -115,6 +112,28 @@ var projects = {
                 }
             }
         }
+*/
+
+        //forEach循环较为易读
+        projects.projects.forEach(function(val){
+            $('#projects').append(HTMLprojectStart);
+            var formattedTitle = HTMLprojectTitle.replace("%data%", val.title);
+            var formattedDates = HTMLprojectDates.replace("%data%", val.dates);
+            var formattedDescription = HTMLprojectDescription.replace("%data%", val.description);
+
+
+            $('.project-entry:last').append(formattedTitle);
+            $('.project-entry:last').append(formattedDates);
+            $('.project-entry:last').append(formattedDescription);
+
+            if (val.images.length > 0) {
+                for (var i = 0; i<val.images.length; i++) {
+                    var formattedImages = HTMLprojectImage.replace("%data%", val.images[i]);
+                    $('.project-entry:last').append(formattedImages);
+                }
+            }
+        })
+
     }
 };
 
@@ -126,7 +145,7 @@ var education = {
             "degree": "bachelor",
             "majors": "music",
             "dates": "2012",
-            "url": "www.baidu.com"
+            "url": "http://www.baidu.com"
         },
         {
             "name": "Southern University",
@@ -134,7 +153,7 @@ var education = {
             "degree": "master",
             "majors": "design",
             "dates": "2016",
-            "url": "www.sina.com"
+            "url": "http://www.sina.com.cn"
         }
     ],
     "onlineCourses": {
@@ -147,6 +166,7 @@ var education = {
         for (var i = 0; i < education.schools.length; i++) {
             $('#education').append(HTMLschoolStart);
             var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[i].name);
+            formattedSchoolName = formattedSchoolName.replace("#", education.schools[i].url);
             var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
             var formattedSchoolDegreeName = formattedSchoolName + formattedSchoolDegree;
             $('.education-entry:last').append(formattedSchoolDegreeName);
@@ -161,12 +181,14 @@ var education = {
 
         $('.education-entry:last').append(HTMLonlineClasses);
         var formattedOnlineCoursesTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses.title);
+        formattedOnlineCoursesTitle = formattedOnlineCoursesTitle.replace("#", education.onlineCourses.url);
         var formattedOnlineCoursesSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses.school);
         var formattedOnlineCoursesSchoolTitle = formattedOnlineCoursesTitle + formattedOnlineCoursesSchool;
         $('.education-entry:last').append(formattedOnlineCoursesSchoolTitle);
         var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses.dates);
         $('.education-entry:last').append(formattedOnlineDates);
         var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses.url);
+        formattedOnlineURL = formattedOnlineURL.replace("#",education.onlineCourses.url );
         $('.education-entry:last').append(formattedOnlineURL);
 
     }
