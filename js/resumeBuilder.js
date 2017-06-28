@@ -114,7 +114,7 @@ var projects = {
         }
 */
 
-        //forEach循环较为易读
+        //forEach循环较易读
         projects.projects.forEach(function(val){
             $('#projects').append(HTMLprojectStart);
             var formattedTitle = HTMLprojectTitle.replace("%data%", val.title);
